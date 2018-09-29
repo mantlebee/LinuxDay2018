@@ -1,22 +1,21 @@
 #!/bin/bash
 
 function print {
-	for i in $@; do echo $i; done
+	for i in "$@"; do echo $i; done
 }
 
 function sudo_check {
 	if [ `id -u` -ne 0 ]; then
-		for i in $@; do $i; done
+		for i in "$@"; do $i; done
 	fi
 }
 
 function install_sources {
-	x=/etc/apt/sources.list
+	f="/etc/apt/sources.list"
 	for i in "$@"; do
-		echo $i
-#		if [ -z "`cat $x | grep $i`" ]; then
-#			echo "$i" >> $x
-#		fi
+		if [ -z `cat $f | grep $i` ]; then
+			echo $i >> $f
+		fi
 	done
 }
 
@@ -25,11 +24,11 @@ function update_sources {
 }
 
 function install_gpg_keys {
-	x="/tmp/gpg_key"
-	for i in $@; do
-		wget $i -o $x
-		apt-key add $x
-		rm $x
+	f="/tmp/gpg_key"
+	for i in "$@"; do
+		wget $i -O $f
+		apt-key add $f
+		rm $f
 	done
 }
 
