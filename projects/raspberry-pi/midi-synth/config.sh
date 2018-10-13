@@ -57,7 +57,7 @@ function update_profile {
 		# Don't forget to replace these with the client numbers!
 		aconnect $MIDICLIENT:0 $FLUIDCLIENT:0
 		# Give fluidsynth a nice high priority so it gets as much CPU as possible!
-		sudo renice -n -18 -u synth
+		sudo renice -n -18 -u pi
 		# $PROJECT (end)" >> $file
 	fi
 }

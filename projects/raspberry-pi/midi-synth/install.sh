@@ -18,6 +18,7 @@ function main {
 	sudo_check usage exit
 	update_sources
 	install_packages "fluidsynth"
+	add_user_to_groups pi audio
 	echo "done!"
 }
 
