@@ -11,9 +11,9 @@ function usage {
 }
 
 function main {
-	MIDICLIENT=""
-	FLUIDCLIENT=""
-	SOUNDFONT="$1"
+	MIDICLIENT="20"
+	FLUIDCLIENT="128"
+	SOUNDFONT="/usr/share/sounds/sf2/FluidR3_GM.sf2"
 	echo $PROJECT
 	set_audio_output "jack"
 	run_fluidsynth $SOUNDFONT
@@ -27,7 +27,8 @@ function main {
 
 function run_fluidsynth {
 	kill_if_running fluidsynth
-	fluidsynth --server --interactive --audio-driver=alsa --gain 5 $SOUNDFONT &
+	fluidsynth --server --no-shell --audio-driver=alsa --gain 5 $SOUNDFONT &
+	sleep 5
 }
 
 function show_audio_devices {
